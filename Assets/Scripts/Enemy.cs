@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using Pathfinding;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+    AIPath aiPath;
     PlayerMove player;
     HearthMove hearth;
 
@@ -27,11 +29,13 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.FindObjectOfType<MonsterManager>().enemies++;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();// transform;
         hearth = GameObject.Find("Hearth").GetComponent<HearthMove>();//.transform;
         body = GetComponent<Rigidbody2D>();
         newCoolDown = Random.Range(MinCoolDown, MaxCoolDown);
         animator = GetComponent<Animator>();
+        aiPath = GetComponent<AIPath>();
     }
     Transform target;
     // Update is called once per frame
@@ -78,12 +82,16 @@ public class Enemy : MonoBehaviour
                 }
             }
 
-            if (moves && !stop)
-                body.velocity = (target.position - transform.position).normalized * movSpeed;
-        }
-       
+            //if (moves && !stop)
+            //    body.velocity = (target.position - transform.position).normalized * movSpeed;
 
-       
+            aiPath.canMove = moves && !stop;
+        }
+        else
+            aiPath.canMove = false;
+
+
+
     }
 
    
@@ -147,5 +155,12 @@ public class Enemy : MonoBehaviour
     public void playAnimation(string name)
     {
         animator.Play(name);
+    }
+
+
+
+    private void OnDestroy()
+    {
+        GameObject.FindObjectOfType<MonsterManager>().enemies--;
     }
 }

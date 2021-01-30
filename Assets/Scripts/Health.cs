@@ -19,6 +19,7 @@ public class Health : MonoBehaviour
     public UnityEvent deathEvent;
     public UnityEvent hitEvent;
     public UnityEvent stunEvent;
+    public bool canUseForHealing;
 
     SpriteRenderer renderer;
 
@@ -86,8 +87,15 @@ public class Health : MonoBehaviour
         if(x == 0)
         {
             dying = true;
+            StartCoroutine(waitBeforeHealing());
             deathEvent.Invoke();
         }
+    }
+
+    IEnumerator waitBeforeHealing()
+    {
+        yield return new WaitForSeconds(4);
+        canUseForHealing = true;
     }
 
     public bool dying;

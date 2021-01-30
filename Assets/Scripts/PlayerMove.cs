@@ -5,6 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 public class PlayerMove : MonoBehaviour
 {
+    public Humanity humanity;
     public float enemysSee;
     public bool isMonster;
     Rigidbody2D body;
@@ -14,7 +15,10 @@ public class PlayerMove : MonoBehaviour
     public Transform faceDir;
     public GameObject actionBox;
     public GameObject basicAttack;
+    public GameObject superAttack;
+
     HearthMove hearth;
+    public Transform ThrowIndicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +33,9 @@ public class PlayerMove : MonoBehaviour
         transformMOnster();
     }
 
-    int canMove, canRotate, animationPlaying,stupid; 
+    int canMove, canRotate, animationPlaying,stupid;
+    float holdTimer;
+    float maxDist = 2;
     // Update is called once per frame
     void Update()
     {
@@ -76,10 +82,35 @@ public class PlayerMove : MonoBehaviour
 
                     StartCoroutine(activateH());
                     stupid = 0;
+                    
                 }
-            
+
+                
                 //isMonster = !isMonster;
 
+            }
+
+           
+            if (Input.GetKey(KeyCode.Mouse1))
+            {
+                holdTimer += Time.deltaTime * 3;
+                if (!hearth.gameObject.activeSelf)
+                {
+                    ThrowIndicator.gameObject.SetActive(true);
+                    RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 0.2f, (actionBox.transform.position - transform.position).normalized,10);
+                    Debug.DrawLine(transform.position, transform.position + (actionBox.transform.position - transform.position).normalized);
+                    foreach (var hit in hits)
+                    {
+                        if (hit.transform.tag == "wall") 
+                        {
+                            maxDist = Vector2.Distance(transform.position, hit.point);
+                            break;
+                        }
+                    }
+
+                    ThrowIndicator.position = transform.position + (actionBox.transform.position - transform.position).normalized * Mathf.Min(maxDist,holdTimer);
+
+                }
             }
 
             if (Input.GetKeyUp(KeyCode.Mouse1))
@@ -96,9 +127,15 @@ public class PlayerMove : MonoBehaviour
                             StartCoroutine(StopStop(0.5f));
                             hearth.transform.position = transform.position;
                             //hearth.GetComponent<Rigidbody2D>().velocity = (actionBox.transform.position - transform.position).normalized * 20;
-                            hearth.transform.DOMove(transform.position + (actionBox.transform.position - transform.position).normalized * 2, 0.2f);
+                            float dist = Mathf.Min(maxDist, holdTimer);
+                            float throwtime = 0.2f + dist / 4f;
+                            hearth.transform.DOMove(transform.position + (actionBox.transform.position - transform.position).normalized * dist, 0.2f + dist/6f);
                             hearth.transform.parent = transform.parent;
-                            hearth.transform.DOScale(hearth.origScale, 0.2f);
+                            var seq = DOTween.Sequence();
+                            seq.Append( hearth.transform.DOScale(hearth.origScale * 2f, throwtime/2));
+                            seq.Append(hearth.transform.DOScale(hearth.origScale, throwtime));
+                            seq.Play();
+                            ThrowIndicator.gameObject.SetActive(false);
                         }
                     
                         canMove++;
@@ -107,16 +144,25 @@ public class PlayerMove : MonoBehaviour
                         stupid++;
               
                 }
+                holdTimer = 0;
+                
             }
 
-        
+           
 
 
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 if (isMonster)
-                    Instantiate(basicAttack, actionBox.transform.position, faceDir.rotation);
+                {
+                    if(Vector2.Distance(transform.position,hearth.transform.position)> humanity.safeZone)
+                        Instantiate(superAttack, actionBox.transform.position, faceDir.rotation);
+                    else
+                        Instantiate(basicAttack, actionBox.transform.position, faceDir.rotation);
+
+
+                }
                 else 
                     actionBox.SetActive(true);
                 canRotate--;
@@ -124,6 +170,14 @@ public class PlayerMove : MonoBehaviour
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
+                var enemy = actionBox.GetComponent<Hug>().enemyToHug;
+                if (enemy != null && enemy.canUseForHealing)
+                {
+                    Destroy(enemy.gameObject);
+                    humanity.heal = false;
+                }
+                if(enemy == null)
+                    humanity.heal = false;
                 actionBox.SetActive(false);
                 canRotate++;
                 canMove++;
@@ -135,7 +189,13 @@ public class PlayerMove : MonoBehaviour
                 {
                     var enemy = actionBox.GetComponent<Hug>().enemyToHug;
                     if (enemy != null)
-                        enemy.hug();
+                    {
+                        if(!enemy.dying)
+                            enemy.hug();
+                        else if (enemy.canUseForHealing)
+                            humanity.heal = true;
+
+                    }
                 }
                     
             }

@@ -25,7 +25,7 @@ public class Humanity : MonoBehaviour
     }
 
     float notSafe;
-
+    public bool heal;
     // Update is called once per frame
     void Update()
     {
@@ -36,12 +36,15 @@ public class Humanity : MonoBehaviour
         else
             notSafe = 0;
 
-        if(notSafe > dangerTimer)
+        if(notSafe > dangerTimer && player.GetComponent<PlayerMove>().isMonster)
         {
             monstrosity += Time.deltaTime * healthDrippingSpeed;
-
         }
-
+        if (heal)
+        {
+            monstrosity -= Time.deltaTime * healthDrippingSpeed;
+            monstrosity = Mathf.Max(0, monstrosity);
+        }
 
         visualX = visualX + ((monstrosity / maxHumanity * startScaleX) - visualX) * changeSpeed;
         transform.localScale = new Vector3(visualX, transform.localScale.y, transform.localScale.z);
