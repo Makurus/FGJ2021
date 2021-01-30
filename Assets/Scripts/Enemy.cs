@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
     AIPath aiPath;
+    AIDestinationSetter aiDS;
     PlayerMove player;
     HearthMove hearth;
 
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
         newCoolDown = Random.Range(MinCoolDown, MaxCoolDown);
         animator = GetComponent<Animator>();
         aiPath = GetComponent<AIPath>();
+        aiDS = GetComponent<AIDestinationSetter>();
     }
     Transform target;
     // Update is called once per frame
@@ -82,6 +84,7 @@ public class Enemy : MonoBehaviour
                 }
             }
 
+            aiDS.target = target;
             //if (moves && !stop)
             //    body.velocity = (target.position - transform.position).normalized * movSpeed;
 

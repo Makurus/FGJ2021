@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - hearth
   - wall
+  - hole
   layers:
   - Default
   - TransparentFX

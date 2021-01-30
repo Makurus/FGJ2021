@@ -11,6 +11,7 @@ public class door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cg.alpha = 1;
         cg.DOFade(0, 1);
     }
 
