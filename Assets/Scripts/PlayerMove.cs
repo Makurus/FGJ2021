@@ -20,6 +20,9 @@ public class PlayerMove : MonoBehaviour
 
     HearthMove hearth;
     public Transform ThrowIndicator;
+
+    [SerializeField] Animator golemAnim;
+    [SerializeField] Animator huggerAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -116,7 +119,7 @@ public class PlayerMove : MonoBehaviour
                     }
 
                     ThrowIndicator.position = actionBox.transform.position + (actionBox.transform.position - actionBox.transform.parent.position).normalized * Mathf.Min(maxDist,holdTimer);
-
+                    huggerAnim.SetBool("throwing", true);
                 }
             }
 
@@ -130,14 +133,21 @@ public class PlayerMove : MonoBehaviour
                         {
                             hearth.gameObject.SetActive(true);
                             isMonster = true;
-                            transform.GetChild(0).gameObject.SetActive(false);
-                            transform.GetChild(1).gameObject.SetActive(true);
-                            transformMOnster();
+
+                            huggerAnim.SetBool("throwing", false);
+                         
+
+                            //Wait anim to complete and then turn to monster
+                            StartCoroutine(MonsterTransform());
+
                             StartCoroutine(StopStop(0.5f));
                             hearth.transform.position = actionBox.transform.position;
                             //hearth.GetComponent<Rigidbody2D>().velocity = (actionBox.transform.position - transform.position).normalized * 20;
                             float dist = Mathf.Min(maxDist, holdTimer);
                             float throwtime = 0.2f + dist / 7f;
+
+                          
+
                             hearth.transform.DOMove(actionBox.transform.position + (actionBox.transform.position - actionBox.transform.parent.position).normalized * dist, throwtime);
                             hearth.transform.parent = transform.parent;
                             var seq = DOTween.Sequence();
@@ -170,7 +180,7 @@ public class PlayerMove : MonoBehaviour
                         Instantiate(superAttack, actionBox.transform.position, faceDir.rotation);
                     else
                         Instantiate(basicAttack, actionBox.transform.position, faceDir.rotation);
-
+                    golemAnim.SetTrigger("att");
 
                 }
                 else 
@@ -248,6 +258,16 @@ public class PlayerMove : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         hearth.stop = false;
+    }
+
+    IEnumerator MonsterTransform()
+    {
+
+        
+        yield return new WaitForSeconds(0.5f);
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true);
+        transformMOnster();
     }
 
     IEnumerator activateH()

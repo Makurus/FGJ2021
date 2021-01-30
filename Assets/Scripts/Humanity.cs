@@ -17,6 +17,7 @@ public class Humanity : MonoBehaviour
     float visualX;
     float startScaleX;
     public Transform white;
+    [SerializeField] GameObject deathScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +52,7 @@ public class Humanity : MonoBehaviour
         transform.localScale = new Vector3(visualX, transform.localScale.y, transform.localScale.z);
 
         if (monstrosity == maxHumanity)
-            print("GAME OVER");
+            deathScreen.SetActive(true);
     }
 
     public void updateHumanity(float change)

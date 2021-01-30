@@ -26,6 +26,11 @@ public class Enemy : MonoBehaviour
     public Transform enemyWeapon;
     int attacking;
     public UnityEvent Attack;
+
+    [SerializeField] Animator enemyAnim;
+
+
+    bool moves;
     //public GameObject projectilePrefab;
     //float attackLag;
     // Start is called before the first frame update
@@ -39,9 +44,12 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         aiPath = GetComponent<AIPath>();
         aiDS = GetComponent<AIDestinationSetter>();
+
     }
     Transform target;
     // Update is called once per frame
+
+
     void Update()
     {
 
@@ -50,7 +58,7 @@ public class Enemy : MonoBehaviour
         bool seesPlayer = distancePlayer < player.enemysSee;
         bool seesHearth = distanceHearth < hearth.enemysSee;
        
-        bool moves = false;
+        moves = false;
         if(!attackOnlyHearth && seesHearth && seesPlayer)
         {
             target = Vector3.Distance(transform.position, player.transform.position) < Vector3.Distance(transform.position, hearth.transform.position) ? player.transform : hearth.transform;
@@ -94,8 +102,7 @@ public class Enemy : MonoBehaviour
         else
             aiPath.canMove = false;
 
-
-
+        
     }
 
    
