@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public float movSpeed;
     public float MaxCoolDown;
     public float MinCoolDown;
+    Animator animator;
     float newCoolDown;
     float coolDownTimer;
     bool stop;
@@ -20,9 +21,9 @@ public class Enemy : MonoBehaviour
     [Space]
     public Transform enemyWeapon;
     int attacking;
-    
-    public GameObject projectilePrefab;
-
+    public UnityEvent Attack;
+    //public GameObject projectilePrefab;
+    //float attackLag;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +31,9 @@ public class Enemy : MonoBehaviour
         hearth = GameObject.Find("Hearth").GetComponent<HearthMove>();//.transform;
         body = GetComponent<Rigidbody2D>();
         newCoolDown = Random.Range(MinCoolDown, MaxCoolDown);
+        animator = GetComponent<Animator>();
     }
-
+    Transform target;
     // Update is called once per frame
     void Update()
     {
@@ -40,7 +42,7 @@ public class Enemy : MonoBehaviour
         float distanceHearth = Vector3.Distance(transform.position, hearth.transform.position);
         bool seesPlayer = distancePlayer < player.enemysSee;
         bool seesHearth = distanceHearth < hearth.enemysSee;
-        Transform target = null;
+       
         bool moves = false;
         if(seesHearth && seesPlayer)
         {
@@ -71,8 +73,8 @@ public class Enemy : MonoBehaviour
                 {
                     coolDownTimer = 0;
                     newCoolDown = Random.Range(MinCoolDown, MaxCoolDown);
-                    var g = Instantiate(projectilePrefab, enemyWeapon.GetChild(0).position, enemyWeapon.rotation, null);
-                    g.GetComponent<Projectile>().direction = (target.position - transform.position).normalized;
+                    Attack.Invoke();
+                
                 }
             }
 
@@ -84,6 +86,18 @@ public class Enemy : MonoBehaviour
        
     }
 
+   
+    public void ExecuteAttack(GameObject prefab)
+    {
+        float lag = prefab.GetComponent<Projectile>().lag;
+        StartCoroutine(_ExecuteAttack(prefab, lag));
+    }
+    IEnumerator _ExecuteAttack(GameObject prefab, float lag)
+    {
+        yield return new WaitForSeconds(lag);
+        var g = Instantiate(prefab, enemyWeapon.GetChild(0).position, enemyWeapon.rotation, null);
+        g.GetComponent<Projectile>().direction = (target.position - transform.position).normalized;
+    }
     public void Stop(float time)
     {
         if (stop)
@@ -127,5 +141,11 @@ public class Enemy : MonoBehaviour
         }
 
 
+    }
+
+
+    public void playAnimation(string name)
+    {
+        animator.Play(name);
     }
 }

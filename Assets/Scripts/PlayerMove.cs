@@ -72,6 +72,8 @@ public class PlayerMove : MonoBehaviour
                     hearth.stop = true;
                     hearth.transform.DOMove(transform.position, 0.2f);
                     hearth.transform.DOScale(0, 0.2f);
+                    hearth.transform.parent = transform;
+
                     StartCoroutine(activateH());
                     stupid = 0;
                 }
@@ -95,7 +97,7 @@ public class PlayerMove : MonoBehaviour
                             hearth.transform.position = transform.position;
                             //hearth.GetComponent<Rigidbody2D>().velocity = (actionBox.transform.position - transform.position).normalized * 20;
                             hearth.transform.DOMove(transform.position + (actionBox.transform.position - transform.position).normalized * 2, 0.2f);
-
+                            hearth.transform.parent = transform.parent;
                             hearth.transform.DOScale(hearth.origScale, 0.2f);
                         }
                     
