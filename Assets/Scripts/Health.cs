@@ -78,8 +78,10 @@ public class Health : MonoBehaviour
             hitEvent.Invoke();
     }
 
+    public bool isBeeingHugged;
     public void hug()
     {
+        isBeeingHugged = true;
         Vector3 scale = healthBar.GetChild(1).localScale;
         float x = Mathf.Max(0, scale.x - Time.deltaTime * hugEfectiveness);
         healthBar.GetChild(1).localScale = new Vector3(x, scale.y, 1);
@@ -116,6 +118,8 @@ public class Health : MonoBehaviour
     IEnumerator waitAndRest_(float time)
     {
         yield return new WaitForSeconds(time);
+        while(isBeeingHugged)
+            yield return new WaitForSeconds(2);
         if (!dying)
             rest();
     }

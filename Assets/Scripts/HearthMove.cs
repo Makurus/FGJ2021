@@ -5,7 +5,7 @@ using UnityEngine;
 public class HearthMove : MonoBehaviour
 {
     public float enemysSee;
-
+    public bool callHearth;
     public float maxSpeed = 3;
     public float rayCastRadius;
 
@@ -15,12 +15,14 @@ public class HearthMove : MonoBehaviour
     public bool closeToPlayer;
     public bool stop;
     public float origScale;
+    Transform player;
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         direction = Random.insideUnitCircle;
         origScale = transform.localScale.x;
+        player = GameObject.Find("Player").transform;
     }
 
 
@@ -46,6 +48,13 @@ public class HearthMove : MonoBehaviour
                  
                 }
              
+            }
+
+            if (callHearth)
+            {
+                var v = (player.position - transform.position).normalized * 2;
+                direction = (direction + new Vector2(v.x, v.y)).normalized;
+
             }
         }
        

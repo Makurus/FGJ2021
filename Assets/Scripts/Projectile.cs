@@ -47,7 +47,6 @@ public class Projectile : MonoBehaviour
         }
        
         
-        print("MOI");
 
     }
 

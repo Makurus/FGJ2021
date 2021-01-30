@@ -87,31 +87,35 @@ public class PlayerMove : MonoBehaviour
                     stupid = 0;
                     
                 }
+                else
+                    hearth.callHearth = true;
 
-                
+
+
                 //isMonster = !isMonster;
 
             }
 
-           
+
             if (Input.GetKey(KeyCode.Mouse1))
             {
                 holdTimer += Time.deltaTime * throwPowerMultiplier;
+                maxDist = 10;
                 if (!hearth.gameObject.activeSelf)
                 {
                     ThrowIndicator.gameObject.SetActive(true);
-                    RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 0.2f, (actionBox.transform.position - transform.position).normalized,10);
+                    RaycastHit2D[] hits = Physics2D.CircleCastAll(actionBox.transform.position,0.2f, (actionBox.transform.position - actionBox.transform.parent.position).normalized,10);
                     Debug.DrawLine(transform.position, transform.position + (actionBox.transform.position - transform.position).normalized);
                     foreach (var hit in hits)
                     {
                         if (hit.transform.tag == "wall") 
                         {
-                            maxDist = Vector2.Distance(transform.position, hit.point);
+                            maxDist = Vector2.Distance(transform.position, hit.point) - 1.5f;
                             break;
                         }
                     }
 
-                    ThrowIndicator.position = transform.position + (actionBox.transform.position - transform.position).normalized * Mathf.Min(maxDist,holdTimer);
+                    ThrowIndicator.position = actionBox.transform.position + (actionBox.transform.position - actionBox.transform.parent.position).normalized * Mathf.Min(maxDist,holdTimer);
 
                 }
             }
@@ -130,11 +134,11 @@ public class PlayerMove : MonoBehaviour
                             transform.GetChild(1).gameObject.SetActive(true);
                             transformMOnster();
                             StartCoroutine(StopStop(0.5f));
-                            hearth.transform.position = transform.position;
+                            hearth.transform.position = actionBox.transform.position;
                             //hearth.GetComponent<Rigidbody2D>().velocity = (actionBox.transform.position - transform.position).normalized * 20;
                             float dist = Mathf.Min(maxDist, holdTimer);
                             float throwtime = 0.2f + dist / 7f;
-                            hearth.transform.DOMove(transform.position + (actionBox.transform.position - transform.position).normalized * dist, throwtime);
+                            hearth.transform.DOMove(actionBox.transform.position + (actionBox.transform.position - actionBox.transform.parent.position).normalized * dist, throwtime);
                             hearth.transform.parent = transform.parent;
                             var seq = DOTween.Sequence();
                             seq.Append( hearth.transform.DOScale(hearth.origScale * 2f, throwtime/2));
@@ -149,6 +153,7 @@ public class PlayerMove : MonoBehaviour
                         stupid++;
               
                 }
+                hearth.callHearth = false;
                 holdTimer = 0;
                 
             }
@@ -181,8 +186,10 @@ public class PlayerMove : MonoBehaviour
                     Destroy(enemy.gameObject);
                     humanity.heal = false;
                 }
-                if(enemy == null)
+                if (enemy == null)
                     humanity.heal = false;
+                else
+                    enemy.isBeeingHugged = false;
                 actionBox.SetActive(false);
                 canRotate++;
                 canMove++;
@@ -198,7 +205,9 @@ public class PlayerMove : MonoBehaviour
                         if(!enemy.dying)
                             enemy.hug();
                         else if (enemy.canUseForHealing)
+                        {
                             humanity.heal = true;
+                        }
 
                     }
                 }
@@ -207,16 +216,20 @@ public class PlayerMove : MonoBehaviour
 
             if (canRotate >= 0)
             {
-                Vector2 screenMiddle = new Vector2(Screen.width / 2, Screen.height / 2);
+                Vector2 mouse2D = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+                Vector2 screenMiddle = Camera.main.WorldToScreenPoint(actionBox.transform.parent.position);// //new Vector2(Screen.width / 2, Screen.height / 2);
                 Vector2 facingDir = (screenMiddle - new Vector2(Input.mousePosition.x, Input.mousePosition.y)).normalized;
-                faceDir.rotation = Quaternion.Euler(new Vector3(0, 0, Vector2.SignedAngle(Vector2.up, facingDir)));
+                float a = Vector2.SignedAngle(oldMouse, mouse2D);
+                faceDir.rotation = Quaternion.Euler(new Vector3(0, 0, Vector2.SignedAngle(Vector2.up, facingDir)));//faceDir.rotation.eulerAngles.z + a));//  360 * ((Input.mousePosition.x / Screen.width) + (Input.mousePosition.y / Screen.height))));// 
+                oldMouse = mouse2D;
             }
         }
       
       
        
     }
-
+    public Vector3 oldMouse;
     void transformMOnster()
     {
         //if (isMonster)

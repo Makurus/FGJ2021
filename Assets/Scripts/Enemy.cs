@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     bool stop;
     public bool stunned;
    
+    public bool attackOnlyHearth;
     [Space]
     public Transform enemyWeapon;
     int attacking;
@@ -50,12 +51,12 @@ public class Enemy : MonoBehaviour
         bool seesHearth = distanceHearth < hearth.enemysSee;
        
         bool moves = false;
-        if(seesHearth && seesPlayer)
+        if(!attackOnlyHearth && seesHearth && seesPlayer)
         {
             target = Vector3.Distance(transform.position, player.transform.position) < Vector3.Distance(transform.position, hearth.transform.position) ? player.transform : hearth.transform;
             moves = true;
         }
-        else if (seesPlayer)
+        else if (!attackOnlyHearth && seesPlayer)
         {
             target = player.transform;
             moves = true;
