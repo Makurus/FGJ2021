@@ -40,7 +40,7 @@ public class HearthMove : MonoBehaviour
                     if (hit.transform.name != "Player" && hit.transform.name != "Hearth" && hit.transform.name != "HearthRadar")
                     {
                         direction = hit.normal;
-                        print("HOI");
+                     
                         break;
                     }
                  

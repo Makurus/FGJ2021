@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8bda428a969e449a9e85f2197cf08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movSpeed: 1
+  movSpeed: 2
   MaxCoolDown: 5
   MinCoolDown: 3
   stunned: 0
@@ -648,7 +648,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 10
+          m_FloatArgument: 20
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -662,7 +662,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 7
+          m_FloatArgument: 11
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -673,7 +673,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 7
+          m_FloatArgument: 11
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

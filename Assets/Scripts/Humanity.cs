@@ -10,6 +10,7 @@ public class Humanity : MonoBehaviour
     public float safeZone;
     public float dangerTimer;
     public float healthDrippingSpeed;
+    public float healthSuckingSpeed;
     public float changeSpeed;
     public float maxHumanity;
     float monstrosity;
@@ -42,7 +43,7 @@ public class Humanity : MonoBehaviour
         }
         if (heal)
         {
-            monstrosity -= Time.deltaTime * healthDrippingSpeed;
+            monstrosity -= Time.deltaTime * healthSuckingSpeed;
             monstrosity = Mathf.Max(0, monstrosity);
         }
 
