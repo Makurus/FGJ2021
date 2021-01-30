@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject actionBox;
     public GameObject basicAttack;
     public GameObject superAttack;
+    [SerializeField] float throwPowerMultiplier;
 
     HearthMove hearth;
     public Transform ThrowIndicator;
@@ -95,7 +96,7 @@ public class PlayerMove : MonoBehaviour
            
             if (Input.GetKey(KeyCode.Mouse1))
             {
-                holdTimer += Time.deltaTime * 3;
+                holdTimer += Time.deltaTime * throwPowerMultiplier;
                 if (!hearth.gameObject.activeSelf)
                 {
                     ThrowIndicator.gameObject.SetActive(true);
@@ -132,12 +133,12 @@ public class PlayerMove : MonoBehaviour
                             hearth.transform.position = transform.position;
                             //hearth.GetComponent<Rigidbody2D>().velocity = (actionBox.transform.position - transform.position).normalized * 20;
                             float dist = Mathf.Min(maxDist, holdTimer);
-                            float throwtime = 0.2f + dist / 4f;
-                            hearth.transform.DOMove(transform.position + (actionBox.transform.position - transform.position).normalized * dist, 0.2f + dist/6f);
+                            float throwtime = 0.2f + dist / 7f;
+                            hearth.transform.DOMove(transform.position + (actionBox.transform.position - transform.position).normalized * dist, throwtime);
                             hearth.transform.parent = transform.parent;
                             var seq = DOTween.Sequence();
                             seq.Append( hearth.transform.DOScale(hearth.origScale * 2f, throwtime/2));
-                            seq.Append(hearth.transform.DOScale(hearth.origScale, throwtime));
+                            seq.Append(hearth.transform.DOScale(hearth.origScale, throwtime/2));
                             seq.Play();
                             ThrowIndicator.gameObject.SetActive(false);
                         }

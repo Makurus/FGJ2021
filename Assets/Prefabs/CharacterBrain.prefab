@@ -353,6 +353,7 @@ MonoBehaviour:
     type: 3}
   superAttack: {fileID: 5635058724226600411, guid: 0442b3a37eb80ba48982aec9c3334ab2,
     type: 3}
+  throwPowerMultiplier: 6.5
   ThrowIndicator: {fileID: 7718599606468908618}
 --- !u!50 &7718599604571504964
 Rigidbody2D:
