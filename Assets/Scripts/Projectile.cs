@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
 {
     public bool hurtsEnemies = true;
     public bool hurtsPlayer = true;
+    public float lag;
     public float hitTime = -1;
     public float waitBeforeDestroy = 0;
     public Vector2 direction;
@@ -37,13 +38,14 @@ public class Projectile : MonoBehaviour
             var h = collision.gameObject.GetComponent<Health>();
 
             h.hurt(damage);
-           
+            hitEvent.Invoke();
         }
         if(hurtsPlayer && !collision.isTrigger && (collision.name == "Player" || collision.name == "Hearth"))
         {
             GameObject.FindObjectOfType<Humanity>().updateHumanity(damage);
+            hitEvent.Invoke();
         }
-        hitEvent.Invoke();
+       
         
         print("MOI");
 
