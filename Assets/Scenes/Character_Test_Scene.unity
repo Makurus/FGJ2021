@@ -271,5 +271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Hollow
       objectReference: {fileID: 0}
+    - target: {fileID: 8362676520872212024, guid: 2145b4bf0ee206b4fbbca18eaeea57c0,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2145b4bf0ee206b4fbbca18eaeea57c0, type: 3}
