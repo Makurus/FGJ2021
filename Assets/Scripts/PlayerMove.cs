@@ -75,6 +75,8 @@ public class PlayerMove : MonoBehaviour
                 {
                     isMonster = false;
                     transformMOnster();
+                    transform.GetChild(1).gameObject.SetActive(false);
+                    transform.GetChild(0).gameObject.SetActive(true);
                     hearth.stop = true;
                     hearth.transform.DOMove(transform.position, 0.2f);
                     hearth.transform.DOScale(0, 0.2f);
@@ -123,6 +125,8 @@ public class PlayerMove : MonoBehaviour
                         {
                             hearth.gameObject.SetActive(true);
                             isMonster = true;
+                            transform.GetChild(0).gameObject.SetActive(false);
+                            transform.GetChild(1).gameObject.SetActive(true);
                             transformMOnster();
                             StartCoroutine(StopStop(0.5f));
                             hearth.transform.position = transform.position;
@@ -214,15 +218,15 @@ public class PlayerMove : MonoBehaviour
 
     void transformMOnster()
     {
-        if (isMonster)
-            transform.DOScale(1.2f, 0.2f);
-        else
-            transform.DOScale(1f, 0.2f);
+        //if (isMonster)
+        //    transform.DOScale(1.2f, 0.2f);
+        //else
+        //    transform.DOScale(1f, 0.2f);
 
-        if (isMonster)
-            GetComponent<SpriteRenderer>().color = Color.gray;
-        else
-            GetComponent<SpriteRenderer>().color = Color.white;
+        //if (isMonster)
+        //    GetComponent<SpriteRenderer>().color = Color.gray;
+        //else
+        //    GetComponent<SpriteRenderer>().color = Color.white;
 
     }
 
