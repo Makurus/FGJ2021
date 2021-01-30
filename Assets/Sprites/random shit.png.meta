@@ -38,6 +38,15 @@ TextureImporter:
   - first:
       213: 8857083314883003598
     second: random shit_11
+  - first:
+      213: 4350014444525394148
+    second: random shit_12
+  - first:
+      213: 3042159579286879825
+    second: random shit_13
+  - first:
+      213: -8180689408937750696
+    second: random shit_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -332,7 +341,7 @@ TextureImporter:
         width: 60
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -353,7 +362,7 @@ TextureImporter:
         width: 60
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -374,7 +383,7 @@ TextureImporter:
         width: 60
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -382,6 +391,69 @@ TextureImporter:
       bones: []
       spriteID: ec404a9195eaaea70800000000000000
       internalID: 8857083314883003598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: random shit_12
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 88
+        width: 177
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e811c5071b5e5c30800000000000000
+      internalID: 4350014444525394148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: random shit_13
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 70
+        width: 44
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15e3271f40ce73a20800000000000000
+      internalID: 3042159579286879825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: random shit_14
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 73
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f0772635a587e80800000000000000
+      internalID: -8180689408937750696
       vertices: []
       indices: 
       edges: []
