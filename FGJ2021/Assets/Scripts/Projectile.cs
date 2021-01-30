@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public class Projectile : MonoBehaviour
 {
-
+    public bool hurtsEnemies = true;
+    public bool hurtsPlayer = true;
     public float hitTime = -1;
     public float waitBeforeDestroy = 0;
     public Vector2 direction;
@@ -31,16 +32,17 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Health>())
+        if (hurtsEnemies && !collision.isTrigger && collision.gameObject.GetComponent<Health>())
         {
             var h = collision.gameObject.GetComponent<Health>();
-            h.hp -= damage;
-            if (h.hp <= 0)
-                h.deathEvent.Invoke();
-            else
-                h.hitEvent.Invoke();
+
+            h.hurt(damage);
+           
         }
-        
+        if(hurtsPlayer && !collision.isTrigger && (collision.name == "Player" || collision.name == "Hearth"))
+        {
+            GameObject.FindObjectOfType<Humanity>().updateHumanity(damage);
+        }
         hitEvent.Invoke();
         
         print("MOI");
