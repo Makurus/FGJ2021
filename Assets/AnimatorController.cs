@@ -28,7 +28,7 @@ public class AnimatorController : MonoBehaviour
 
     }
 
-    public void SetDamagedAnim(bool value)
+    public void SetDamagedAnim()
     {
         anim.SetTrigger("dmg");
 
