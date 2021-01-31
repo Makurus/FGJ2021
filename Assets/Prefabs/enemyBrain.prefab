@@ -512,9 +512,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 5559845501246872944}
+  healParticle: {fileID: 9074175205598558035, guid: a891ea3156653504fadf4995a4b2c17a,
+    type: 3}
   movSpeed: 2
   MaxCoolDown: 5
   MinCoolDown: 3
+  animator: {fileID: 7319955353617751539}
   stunned: 0
   attackOnlyHearth: 0
   enemyWeapon: {fileID: 2552468902192797850}
@@ -654,6 +657,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2552468902294229524}
+        m_MethodName: spawnHeal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   hitEvent:
     m_PersistentCalls:
       m_Calls:
@@ -667,7 +681,7 @@ MonoBehaviour:
           m_FloatArgument: 5
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 2552468902294229524}
         m_MethodName: Stop
         m_Mode: 4

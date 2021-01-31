@@ -11,12 +11,12 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer sr;
     PlayerMove player;
     HearthMove hearth;
-
+    public GameObject healParticle;
     Rigidbody2D body;
     public float movSpeed;
     public float MaxCoolDown;
     public float MinCoolDown;
-    Animator animator;
+    public Animator animator;
     float newCoolDown;
     float coolDownTimer;
     bool stop;
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
         hearth = GameObject.Find("Hearth").GetComponent<HearthMove>();//.transform;
         body = GetComponent<Rigidbody2D>();
         newCoolDown = Random.Range(MinCoolDown, MaxCoolDown);
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         aiPath = GetComponent<AIPath>();
         aiDS = GetComponent<AIDestinationSetter>();
 
@@ -104,11 +104,17 @@ public class Enemy : MonoBehaviour
             //    body.velocity = (target.position - transform.position).normalized * movSpeed;
 
             aiPath.canMove = moves && !stop;
+
+            animator.SetBool("walking", moves && !stop);
         }
         else
+        {
             aiPath.canMove = false;
+            animator.SetBool("walking", false);
 
-        
+        }
+
+
     }
 
    
@@ -175,7 +181,16 @@ public class Enemy : MonoBehaviour
     }
 
 
-
+    public void spawnHeal()
+    {
+        StartCoroutine(healS());
+    }
+    IEnumerator healS()
+    {
+        yield return new WaitForSeconds(3);
+         var g = Instantiate(healParticle, transform);
+        g.transform.position = transform.position;
+    }
     private void OnDestroy()
     {
         GameObject.FindObjectOfType<MonsterManager>().enemies--;

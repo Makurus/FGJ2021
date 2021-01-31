@@ -18,7 +18,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject basicAttack;
     public GameObject superAttack;
     [SerializeField] float throwPowerMultiplier;
-
+    public GameObject halaihuEfekti;
     HearthMove hearth;
     public Transform ThrowIndicator;
 
@@ -65,7 +65,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        print("MOVE: " + canMove + "FREEZE " + freeze);
         body.velocity = Vector2.zero;
         cursor.GetChild(0).gameObject.SetActive(!isMonster);
         cursor.GetChild(1).gameObject.SetActive(isMonster);
@@ -192,11 +192,13 @@ public class PlayerMove : MonoBehaviour
                             ThrowIndicator.gameObject.SetActive(false);
                         }
                     
-                        canMove++;
+                     
                     }
                     else
                         stupid++;
-              
+
+                    canMove++;
+
                 }
                 hearth.callHearth = false;
                 holdTimer = 0;
@@ -223,6 +225,7 @@ public class PlayerMove : MonoBehaviour
                     actionBox.SetActive(true);
                     hugStart = true;
                     hugging = true;
+                    halaihuEfekti.SetActive(true);
                 } 
                 canRotate--;
                 canMove--;
@@ -247,6 +250,8 @@ public class PlayerMove : MonoBehaviour
                 {
                     huggerAnim.Play("player_normal_idle");
                     hugging = false;
+                    halaihuEfekti.SetActive(false);
+
                 }
             }
 
@@ -260,11 +265,11 @@ public class PlayerMove : MonoBehaviour
                         if (!enemy.dying)
                         {
                             enemy.hug();
-                            if (hugStart)
-                            {
-                                huggerAnim.Play("player_normal_hug");
-                                hugStart = false;
-                            }
+                            //if (hugStart)
+                            //{
+                            //    huggerAnim.Play("player_normal_hug");
+                            //    hugStart = false;
+                            //}
                         
                         }
                         else if (enemy.canUseForHealing)
@@ -274,7 +279,7 @@ public class PlayerMove : MonoBehaviour
                         }
 
                     }
-                    else
+
                     {
                         if (hugStart)
                         {
@@ -337,15 +342,28 @@ public class PlayerMove : MonoBehaviour
         hearth.stop = false;
     }
 
+    //IEnumerator MonsterTransform()
+    //{
+
+        
+    //    yield return new WaitForSeconds(0.5f);
+    //    transform.GetChild(0).gameObject.SetActive(false);
+    //    transform.GetChild(1).gameObject.SetActive(true);
+    //    transformMOnster();
+    //}
+
     IEnumerator MonsterTransform()
     {
 
-        
+        Instantiate(blodPFX, transform.position + new Vector3(0, 0.4f), Quaternion.identity);
         yield return new WaitForSeconds(0.5f);
+        Instantiate(clothesPFX, transform.position + new Vector3(0, 0.2f), Quaternion.identity);
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(true);
         transformMOnster();
     }
+    [SerializeField] GameObject clothesPFX;
+    [SerializeField] GameObject blodPFX;
 
     IEnumerator activateH()
     {

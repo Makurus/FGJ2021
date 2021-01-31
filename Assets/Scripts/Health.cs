@@ -109,6 +109,7 @@ public class Health : MonoBehaviour
         hp_light = maxHPlight;
         healthBar.GetChild(0).DOScaleX(1, 1f);
         healthBar.GetChild(1).DOScaleX(1, 0f);
+        GetComponent<Enemy>().animator.SetBool("stunned", false);
         GetComponent<Enemy>().stunned = false;
     }
 
