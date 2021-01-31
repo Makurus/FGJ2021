@@ -29,6 +29,7 @@ public class PlayerMove : MonoBehaviour
 
     public AudioClip hugA;
     public AudioClip hitA;
+    public AudioClip hugB;
     public AudioSource AS;
     // Start is called before the first frame update
     void Start()
@@ -222,7 +223,8 @@ public class PlayerMove : MonoBehaviour
                     else
                         Instantiate(basicAttack, actionBox.transform.position, faceDir.rotation);
                     golemAnim.SetTrigger("att");
-
+                    AS.clip = hitA;
+                    AS.Play();
                 }
                 else
                 {
@@ -230,6 +232,8 @@ public class PlayerMove : MonoBehaviour
                     hugStart = true;
                     hugging = true;
                     halaihuEfekti.SetActive(true);
+                    AS.clip = hugA;
+                    AS.Play();
                 } 
                 canRotate--;
                 canMove--;

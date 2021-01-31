@@ -24,6 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/tutorial 04.unity
     guid: db8514599ff2a424ca737c57cbfd3601
   - enabled: 1
-    path: Assets/Scenes/gameplay2.unity
+    path: Assets/Scenes/level 4 enemies.unity
     guid: e08153e5e458b8b43a6ab2130e0e4dff
   m_configObjects: {}
