@@ -88,12 +88,12 @@ public class Humanity : MonoBehaviour
 
     }
 
-    private void OnDrawGizmos()
-    {
+    //private void OnDrawGizmos()
+    //{
        
-        //Gizmos.(transform.position, enemysSee);
-        UnityEditor.Handles.color = Color.red;
-        UnityEditor.Handles.DrawWireDisc(hearth.position, Vector3.back, safeZone);
-    }
+    //    //Gizmos.(transform.position, enemysSee);
+    //    UnityEditor.Handles.color = Color.red;
+    //    UnityEditor.Handles.DrawWireDisc(hearth.position, Vector3.back, safeZone);
+    //}
 
 }
