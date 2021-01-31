@@ -54,17 +54,27 @@ public class Humanity : MonoBehaviour
         visualX = visualX + ((monstrosity / maxHumanity * startScaleX) - visualX) * changeSpeed;
         transform.localScale = new Vector3(visualX, transform.localScale.y, transform.localScale.z);
 
-        if (monstrosity >= maxHumanity)
+        if (monstrosity >= maxHumanity && !once)
         {
             deathScreen.SetActive(true);
             hearth.gameObject.SetActive(false);
-            player.GetComponent<PlayerMove>().freeze = true;
-            player.GetComponent<PlayerMove>().huggerAnim.Play("Golem_Death_Anim");
-            player.GetComponent<PlayerMove>().golemAnim.Play("player_normal_dead");
+            var p = player.GetComponent<PlayerMove>();
+            p.freeze = true;
+            var i = p.huggerAnim.GetCurrentAnimatorClipInfo(0);
+            p.huggerAnim.SetFloat("speed", -100);
+            p.golemAnim.SetFloat("speed", -100);
 
+            p.huggerAnim.SetBool("ded", true);
+            p.golemAnim.SetBool("ded", true);
+
+            //p.huggerAnim.Play("Golem_Death_Anim");
+            //p.golemAnim.Play("player_normal_dead");
+            print(i[0].clip.name);
+
+            once = true;
         }
     }
-
+    bool once;
     public void updateHumanity(float change)
     {
         monstrosity += change;

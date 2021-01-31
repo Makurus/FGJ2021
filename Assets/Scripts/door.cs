@@ -12,7 +12,7 @@ public class door : MonoBehaviour
     void Start()
     {
         cg.alpha = 1;
-        cg.DOFade(0, 1);
+        cg.DOFade(0, 3);
     }
 
     public void nextFloor()

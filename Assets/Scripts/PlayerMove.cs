@@ -70,7 +70,7 @@ public class PlayerMove : MonoBehaviour
         cursor.GetChild(0).gameObject.SetActive(!isMonster);
         cursor.GetChild(1).gameObject.SetActive(isMonster);
 
-
+        print("FREEZE " + freeze);
         if (freeze)
             return;
         //INPUTS
@@ -298,8 +298,12 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        huggerAnim.SetFloat("speed", body.velocity.magnitude);
-        golemAnim.SetFloat("speed", body.velocity.magnitude);
+        var mag = body.velocity.magnitude;
+        print("velocity " + body.velocity.magnitude);
+        if (mag < 0.1f)
+            mag = -1;
+        huggerAnim.SetFloat("speed", mag);
+        golemAnim.SetFloat("speed", mag);
         monsterSR.flipX = body.velocity.x < 0;
 
 
