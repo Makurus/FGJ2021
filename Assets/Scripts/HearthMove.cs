@@ -83,9 +83,9 @@ public class HearthMove : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        //Gizmos.(transform.position, enemysSee);
-        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, enemysSee);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    //Gizmos.(transform.position, enemysSee);
+    //    UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, enemysSee);
+    //}
 }

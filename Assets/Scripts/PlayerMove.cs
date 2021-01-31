@@ -27,9 +27,13 @@ public class PlayerMove : MonoBehaviour
     public SpriteRenderer humanSR;
     public SpriteRenderer monsterSR;
 
+    public AudioClip hugA;
+    public AudioClip hitA;
+    public AudioSource AS;
     // Start is called before the first frame update
     void Start()
     {
+        
         isMonster = true;
         Cursor.visible = false;
         var lockMode = CursorLockMode.Confined;
@@ -374,7 +378,7 @@ public class PlayerMove : MonoBehaviour
     private void OnDrawGizmos()
     {
         //Gizmos.(transform.position, enemysSee);
-        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, enemysSee);
+        //UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, enemysSee);
     }
 
 
