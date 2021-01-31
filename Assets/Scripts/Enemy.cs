@@ -31,6 +31,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator enemyAnim;
 
 
+    [SerializeField] bool playSounds;
+    [SerializeField] AudioSource aus;
+    [SerializeField] AudioClip[] audioclips;
+
     bool moves;
     //public GameObject projectilePrefab;
     //float attackLag;
@@ -45,6 +49,8 @@ public class Enemy : MonoBehaviour
         //animator = GetComponent<Animator>();
         aiPath = GetComponent<AIPath>();
         aiDS = GetComponent<AIDestinationSetter>();
+
+        StartCoroutine(GruntSounds());
 
     }
     Transform target;
@@ -194,5 +200,17 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         GameObject.FindObjectOfType<MonsterManager>().enemies--;
+    }
+
+    IEnumerator GruntSounds()
+    {
+        while (playSounds) {
+            
+
+            yield return new WaitForSeconds(Random.Range(3f, 9f));
+
+            aus.PlayOneShot(audioclips[Random.Range(0, audioclips.Length)]);
+
+        }
     }
 }
