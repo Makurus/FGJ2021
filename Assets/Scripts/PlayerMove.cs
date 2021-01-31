@@ -6,7 +6,6 @@ using DG.Tweening;
 public class PlayerMove : MonoBehaviour
 {
     public Transform cursor;
-
     public Humanity humanity;
     public float enemysSee;
     public bool isMonster;
@@ -23,8 +22,11 @@ public class PlayerMove : MonoBehaviour
     HearthMove hearth;
     public Transform ThrowIndicator;
 
-    [SerializeField] Animator golemAnim;
-    [SerializeField] Animator huggerAnim;
+    public Animator golemAnim;
+    public Animator huggerAnim;
+    public SpriteRenderer humanSR;
+    public SpriteRenderer monsterSR;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,12 +61,12 @@ public class PlayerMove : MonoBehaviour
     int canMove, canRotate, animationPlaying,stupid;
     float holdTimer;
     float maxDist = 2;
+    bool hugStart,hugging;
     // Update is called once per frame
     void Update()
     {
 
         body.velocity = Vector2.zero;
-
         cursor.GetChild(0).gameObject.SetActive(!isMonster);
         cursor.GetChild(1).gameObject.SetActive(isMonster);
 
@@ -216,11 +218,16 @@ public class PlayerMove : MonoBehaviour
                     golemAnim.SetTrigger("att");
 
                 }
-                else 
+                else
+                {
                     actionBox.SetActive(true);
+                    hugStart = true;
+                    hugging = true;
+                } 
                 canRotate--;
                 canMove--;
             }
+
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 var enemy = actionBox.GetComponent<Hug>().enemyToHug;
@@ -236,6 +243,11 @@ public class PlayerMove : MonoBehaviour
                 actionBox.SetActive(false);
                 canRotate++;
                 canMove++;
+                if (!isMonster)
+                {
+                    huggerAnim.Play("player_normal_idle");
+                    hugging = false;
+                }
             }
 
             if (Input.GetKey(KeyCode.Mouse0))
@@ -245,13 +257,30 @@ public class PlayerMove : MonoBehaviour
                     var enemy = actionBox.GetComponent<Hug>().enemyToHug;
                     if (enemy != null)
                     {
-                        if(!enemy.dying)
+                        if (!enemy.dying)
+                        {
                             enemy.hug();
+                            if (hugStart)
+                            {
+                                huggerAnim.Play("player_normal_hug");
+                                hugStart = false;
+                            }
+                        
+                        }
                         else if (enemy.canUseForHealing)
                         {
                             humanity.heal = true;
+                          
                         }
 
+                    }
+                    else
+                    {
+                        if (hugStart)
+                        {
+                            huggerAnim.Play("player_normal_hug_miss");
+                            hugStart = false;
+                        }
                     }
                 }
                     
@@ -268,9 +297,20 @@ public class PlayerMove : MonoBehaviour
                 oldMouse = mouse2D;
             }
         }
-      
-      
-       
+
+        huggerAnim.SetFloat("speed", body.velocity.magnitude);
+        golemAnim.SetFloat("speed", body.velocity.magnitude);
+        monsterSR.flipX = body.velocity.x < 0;
+
+
+    }
+
+    private void LateUpdate()
+    {
+        if (hugging)
+            humanSR.flipX = actionBox.transform.position.x < transform.position.x;
+        else
+            humanSR.flipX = body.velocity.x < 0;
     }
     public Vector3 oldMouse;
     void transformMOnster()
@@ -319,10 +359,13 @@ public class PlayerMove : MonoBehaviour
     public bool freeze;
     public void freezePlayer(float t)
     {
+        if (freeze)
+            return;
         StartCoroutine(freeze_(t));
     }
     IEnumerator freeze_(float t)
     {
+
         freeze = true;
         yield return new WaitForSeconds(t);
         freeze = false;

@@ -1604,15 +1604,21 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 1853585413}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!212 &1580860614 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7718599606208142750, guid: 49cc72b34fef915458cc0769e9cbdd96,
+    type: 3}
+  m_PrefabInstance: {fileID: 7718599604850862671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1587588553 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7718599605549238150, guid: 49cc72b34fef915458cc0769e9cbdd96,
     type: 3}
   m_PrefabInstance: {fileID: 7718599604850862671}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1619523494 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8302530339903714898, guid: 49cc72b34fef915458cc0769e9cbdd96,
+--- !u!212 &1624099554 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8302530339903714899, guid: 49cc72b34fef915458cc0769e9cbdd96,
     type: 3}
   m_PrefabInstance: {fileID: 7718599604850862671}
   m_PrefabAsset: {fileID: 0}
@@ -2430,21 +2436,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7718599604571504968, guid: 49cc72b34fef915458cc0769e9cbdd96,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718599604754268594, guid: 49cc72b34fef915458cc0769e9cbdd96,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718599604859049352, guid: 49cc72b34fef915458cc0769e9cbdd96,
+    - target: {fileID: 3372146544763268578, guid: 49cc72b34fef915458cc0769e9cbdd96,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3372146544763268578, guid: 49cc72b34fef915458cc0769e9cbdd96,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830024030690294670, guid: 49cc72b34fef915458cc0769e9cbdd96,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830024030690294670, guid: 49cc72b34fef915458cc0769e9cbdd96,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830024030690294670, guid: 49cc72b34fef915458cc0769e9cbdd96,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830024030690294670, guid: 49cc72b34fef915458cc0769e9cbdd96,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718599604571504963, guid: 49cc72b34fef915458cc0769e9cbdd96,
+        type: 3}
+      propertyPath: humanSR
+      value: 
+      objectReference: {fileID: 1580860614}
+    - target: {fileID: 7718599604571504963, guid: 49cc72b34fef915458cc0769e9cbdd96,
+        type: 3}
+      propertyPath: monsterSR
+      value: 
+      objectReference: {fileID: 1624099554}
     - target: {fileID: 7718599604959787360, guid: 49cc72b34fef915458cc0769e9cbdd96,
         type: 3}
       propertyPath: m_Name
@@ -2505,24 +2536,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7718599605207879666, guid: 49cc72b34fef915458cc0769e9cbdd96,
+    - target: {fileID: 7718599606208142750, guid: 49cc72b34fef915458cc0769e9cbdd96,
         type: 3}
-      propertyPath: safeZone
-      value: 5.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718599605207879666, guid: 49cc72b34fef915458cc0769e9cbdd96,
-        type: 3}
-      propertyPath: animatorP
-      value: 
-      objectReference: {fileID: 1619523494}
-    - target: {fileID: 7718599605549238146, guid: 49cc72b34fef915458cc0769e9cbdd96,
-        type: 3}
-      propertyPath: m_Radius
-      value: 5.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 8302530338416821350, guid: 49cc72b34fef915458cc0769e9cbdd96,
-        type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

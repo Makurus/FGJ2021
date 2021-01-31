@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2552468900771325364
 Transform:
   m_ObjectHideFlags: 0
@@ -576,7 +576,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Hollow_Attack_Anim
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
   enemyAnim: {fileID: 7319955353617751539}
 --- !u!114 &2552468902294229609
 MonoBehaviour:

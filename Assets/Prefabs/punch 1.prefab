@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtsEnemies: 0
   hurtsPlayer: 1
-  lag: 0
+  lag: 0.3
   hitTime: 0.1
   waitBeforeDestroy: 0.1
   direction: {x: 0, y: 0}
