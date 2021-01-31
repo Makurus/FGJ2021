@@ -409,12 +409,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224066124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 2.58, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.1500001, y: 2.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &257085118
 GameObject:
@@ -646,12 +646,12 @@ PrefabInstance:
     - target: {fileID: 2552468902294229526, guid: 7513f9711de754b4d9cdd2675813d76b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.3
+      value: 4.78
       objectReference: {fileID: 0}
     - target: {fileID: 2552468902294229526, guid: 7513f9711de754b4d9cdd2675813d76b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.85
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: 2552468902294229526, guid: 7513f9711de754b4d9cdd2675813d76b,
         type: 3}
@@ -695,6 +695,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2552468902294229609, guid: 7513f9711de754b4d9cdd2675813d76b,
         type: 3}
+      propertyPath: stunEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552468902294229609, guid: 7513f9711de754b4d9cdd2675813d76b,
+        type: 3}
+      propertyPath: stunEvent.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552468902294229609, guid: 7513f9711de754b4d9cdd2675813d76b,
+        type: 3}
+      propertyPath: stunEvent.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 1144077738}
+    - target: {fileID: 2552468902294229609, guid: 7513f9711de754b4d9cdd2675813d76b,
+        type: 3}
+      propertyPath: stunEvent.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552468902294229609, guid: 7513f9711de754b4d9cdd2675813d76b,
+        type: 3}
+      propertyPath: stunEvent.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552468902294229609, guid: 7513f9711de754b4d9cdd2675813d76b,
+        type: 3}
+      propertyPath: stunEvent.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552468902294229609, guid: 7513f9711de754b4d9cdd2675813d76b,
+        type: 3}
       propertyPath: stunEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
       value: 50
       objectReference: {fileID: 0}
@@ -702,6 +732,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stunEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552468902294229609, guid: 7513f9711de754b4d9cdd2675813d76b,
+        type: 3}
+      propertyPath: stunEvent.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2552468902294229615, guid: 7513f9711de754b4d9cdd2675813d76b,
         type: 3}
@@ -1015,13 +1050,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1144077740}
   - component: {fileID: 1144077739}
+  - component: {fileID: 1144077741}
   m_Layer: 0
   m_Name: tutorial text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1144077739
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1087,6 +1123,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1144077741
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144077738}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d3d1546336f0694f9d54b60e44da3ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1151075584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2279,7 +2334,7 @@ Transform:
   m_LocalScale: {x: 2.8659956, y: 2.48315, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1510751516
 BoxCollider2D:
@@ -2694,7 +2749,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759885694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1962276, y: -0.8521198, z: -8.14}
+  m_LocalPosition: {x: -1.1925464, y: -0.85244596, z: -8.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
