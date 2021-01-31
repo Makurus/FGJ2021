@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 233736980212468603}
   - component: {fileID: 4765109823097157961}
   - component: {fileID: 4689386107292492955}
+  - component: {fileID: -3681709371542091660}
   m_Layer: 0
   m_Name: punch 1
   m_TagString: bullet
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5635058724226600411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7383827, y: 0.73178697, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.35, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,10 +75,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 492da12f5474fa7419f8d2c3d8c25e03, type: 3}
-  m_Color: {r: 0.1634675, g: 0.36862746, b: 0.0980392, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
+  m_Sprite: {fileID: 8857083314883003598, guid: f46ca07d863956348b28994f2de9da30,
+    type: 3}
+  m_Color: {r: 0.8396226, g: 0.04356533, b: 0.04356533, a: 0.7882353}
+  m_FlipX: 1
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
@@ -99,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtsEnemies: 0
   hurtsPlayer: 1
+  lag: 0
   hitTime: 0.1
   waitBeforeDestroy: 0.1
   direction: {x: 0, y: 0}
@@ -171,12 +174,31 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.75, y: 1.1875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.24, y: 1.65}
   m_EdgeRadius: 0
+--- !u!95 &-3681709371542091660
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635058724226600411}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d84439ceceb7452468796d245b53bb43, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

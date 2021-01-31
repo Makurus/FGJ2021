@@ -7,6 +7,9 @@ public class Humanity : MonoBehaviour
 {
     public Transform player;
     public Transform hearth;
+    public Animator animatorP;
+    public Animator animatorH;
+
     public float safeZone;
     public float dangerTimer;
     public float healthDrippingSpeed;
@@ -51,7 +54,7 @@ public class Humanity : MonoBehaviour
         visualX = visualX + ((monstrosity / maxHumanity * startScaleX) - visualX) * changeSpeed;
         transform.localScale = new Vector3(visualX, transform.localScale.y, transform.localScale.z);
 
-        if (monstrosity == maxHumanity)
+        if (monstrosity >= maxHumanity)
             deathScreen.SetActive(true);
     }
 
@@ -59,9 +62,13 @@ public class Humanity : MonoBehaviour
     {
         monstrosity += change;
         monstrosity = Mathf.Min(maxHumanity, monstrosity);
+        animatorP.Play("Golem_Damage_Anim");
+        player.GetComponent<PlayerMove>().freezePlayer(0.3f);
+        //animatorH.Play("Golem_Damage_Anim");
+
         //transform.DOScaleX(monstrosity / maxHumanity * startScaleX, 0.5f);
         //white.DOScaleX(startScaleX -( monstrosity / maxHumanity * startScaleX), 0.5f);
-       
+
     }
 
     private void OnDrawGizmos()

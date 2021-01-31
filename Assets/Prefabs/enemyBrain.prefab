@@ -511,6 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8bda428a969e449a9e85f2197cf08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 5559845501246872944}
   movSpeed: 2
   MaxCoolDown: 5
   MinCoolDown: 3
@@ -565,6 +566,17 @@ MonoBehaviour:
           m_StringArgument: enemyTest
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1369291069117183614}
+        m_MethodName: PlayAnim
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hollow_Attack_Anim
+          m_BoolArgument: 0
+        m_CallState: 2
   enemyAnim: {fileID: 7319955353617751539}
 --- !u!114 &2552468902294229609
 MonoBehaviour:
@@ -581,6 +593,7 @@ MonoBehaviour:
   hugEfectiveness: 0.5
   hp_dark: 3
   hp_light: 0
+  maxHealing: 0
   timeBetweenHits: 1
   timer: 0
   deathEvent:
@@ -618,6 +631,28 @@ MonoBehaviour:
           m_FloatArgument: 10
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1369291069117183614}
+        m_MethodName: PlayAnim
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hollow_Transform_Anim
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 1369291069117183614}
+        m_MethodName: PlayDie
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   hitEvent:
     m_PersistentCalls:
@@ -1000,6 +1035,12 @@ MonoBehaviour:
 --- !u!95 &7319955353617751539 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6679699608145442491, guid: 2145b4bf0ee206b4fbbca18eaeea57c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4118185598903774024}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &5559845501246872944 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8362676520872212024, guid: 2145b4bf0ee206b4fbbca18eaeea57c0,
     type: 3}
   m_PrefabInstance: {fileID: 4118185598903774024}
   m_PrefabAsset: {fileID: 0}

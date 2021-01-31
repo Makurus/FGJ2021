@@ -217,6 +217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 326085386}
   hearth: {fileID: 1587588553}
+  animatorP: {fileID: 0}
+  animatorH: {fileID: 0}
   safeZone: 2.4
   dangerTimer: 0
   healthDrippingSpeed: 0.12
@@ -1608,6 +1610,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7718599604850862671}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1619523494 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8302530339903714898, guid: 49cc72b34fef915458cc0769e9cbdd96,
+    type: 3}
+  m_PrefabInstance: {fileID: 7718599604850862671}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1640697423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,7 +1802,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759885694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.48602295, y: -2.7835188, z: -8.14}
+  m_LocalPosition: {x: 0.48041916, y: -2.7888322, z: -8.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2496,6 +2504,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718599605207879666, guid: 49cc72b34fef915458cc0769e9cbdd96,
+        type: 3}
+      propertyPath: safeZone
+      value: 5.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718599605207879666, guid: 49cc72b34fef915458cc0769e9cbdd96,
+        type: 3}
+      propertyPath: animatorP
+      value: 
+      objectReference: {fileID: 1619523494}
+    - target: {fileID: 7718599605549238146, guid: 49cc72b34fef915458cc0769e9cbdd96,
+        type: 3}
+      propertyPath: m_Radius
+      value: 5.71
       objectReference: {fileID: 0}
     - target: {fileID: 8302530338416821350, guid: 49cc72b34fef915458cc0769e9cbdd96,
         type: 3}

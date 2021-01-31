@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
     AIPath aiPath;
     AIDestinationSetter aiDS;
+    public SpriteRenderer sr;
     PlayerMove player;
     HearthMove hearth;
 
@@ -77,6 +78,11 @@ public class Enemy : MonoBehaviour
 
         if (!stunned && target != null)
         {
+            if (target.position.x > transform.position.x)
+                sr.flipX = true;
+            else
+                sr.flipX = false;
+
             coolDownTimer += Time.deltaTime;
             if (attacking > 0)
             {

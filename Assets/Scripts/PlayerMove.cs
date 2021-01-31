@@ -5,6 +5,8 @@ using UnityEngine;
 using DG.Tweening;
 public class PlayerMove : MonoBehaviour
 {
+    public Transform cursor;
+
     public Humanity humanity;
     public float enemysSee;
     public bool isMonster;
@@ -35,6 +37,23 @@ public class PlayerMove : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
 
         transformMOnster();
+
+
+
+        /////
+        ///
+        isMonster = false;
+        transformMOnster();
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(true);
+        hearth.stop = true;
+        hearth.transform.DOMove(transform.position, 0.2f);
+        hearth.transform.DOScale(0, 0.2f);
+        hearth.transform.parent = transform;
+
+        StartCoroutine(activateH());
+        stupid++;
+        ////
     }
 
     int canMove, canRotate, animationPlaying,stupid;
@@ -43,7 +62,15 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         body.velocity = Vector2.zero;
+
+        cursor.GetChild(0).gameObject.SetActive(!isMonster);
+        cursor.GetChild(1).gameObject.SetActive(isMonster);
+
+
+        if (freeze)
+            return;
         //INPUTS
         if (animationPlaying == 0)
         {
@@ -106,22 +133,28 @@ public class PlayerMove : MonoBehaviour
                 maxDist = 10;
                 if (!hearth.gameObject.activeSelf)
                 {
-                    ThrowIndicator.gameObject.SetActive(true);
-                    RaycastHit2D[] hits = Physics2D.CircleCastAll(actionBox.transform.position,0.2f, (actionBox.transform.position - actionBox.transform.parent.position).normalized,10);
+                    //ThrowIndicator.gameObject.SetActive(true);
+                    RaycastHit2D[] hits = Physics2D.CircleCastAll(actionBox.transform.position, 0.2f, (actionBox.transform.position - actionBox.transform.parent.position).normalized, 10);
                     Debug.DrawLine(transform.position, transform.position + (actionBox.transform.position - transform.position).normalized);
                     foreach (var hit in hits)
                     {
-                        if (hit.transform.tag == "wall") 
+                        if (hit.transform.tag == "wall")
                         {
                             maxDist = Vector2.Distance(transform.position, hit.point) - 1.5f;
                             break;
                         }
                     }
 
-                    ThrowIndicator.position = actionBox.transform.position + (actionBox.transform.position - actionBox.transform.parent.position).normalized * Mathf.Min(maxDist,holdTimer);
+                    ThrowIndicator.position = actionBox.transform.position + (actionBox.transform.position - actionBox.transform.parent.position).normalized * Mathf.Min(maxDist, holdTimer);
+                    cursor.position = ThrowIndicator.position;
                     huggerAnim.SetBool("throwing", true);
                 }
+                else
+                    cursor.position = actionBox.transform.parent.GetChild(1).position;
+
             }
+            else
+                cursor.position = actionBox.transform.parent.GetChild(1).position;
 
             if (Input.GetKeyUp(KeyCode.Mouse1))
             {
@@ -280,5 +313,18 @@ public class PlayerMove : MonoBehaviour
     {
         //Gizmos.(transform.position, enemysSee);
         UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.back, enemysSee);
+    }
+
+
+    public bool freeze;
+    public void freezePlayer(float t)
+    {
+        StartCoroutine(freeze_(t));
+    }
+    IEnumerator freeze_(float t)
+    {
+        freeze = true;
+        yield return new WaitForSeconds(t);
+        freeze = false;
     }
 }

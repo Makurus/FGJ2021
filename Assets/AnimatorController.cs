@@ -34,5 +34,16 @@ public class AnimatorController : MonoBehaviour
 
     }
 
+    public void PlayDie(bool b)
+    {
+        anim.SetBool("die",b);
 
+    }
+
+    public void PlayAnim(string name)
+    {
+        print(name);
+        anim.Play(name);
+
+    }
 }

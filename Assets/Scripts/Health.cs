@@ -13,6 +13,8 @@ public class Health : MonoBehaviour
     float maxHPdark;
     float maxHPlight;
 
+    public float maxHealing;
+
     public float timeBetweenHits;
     [HideInInspector]
     public float timer;
