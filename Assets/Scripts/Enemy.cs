@@ -213,4 +213,14 @@ public class Enemy : MonoBehaviour
 
         }
     }
+
+    public void ReleaseAnim()
+    {
+        animator.SetTrigger("saved");
+    }
+
+    public void destroyeyy()
+    {
+        Destroy(gameObject);
+    }
 }

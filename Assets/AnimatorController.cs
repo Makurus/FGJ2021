@@ -46,4 +46,8 @@ public class AnimatorController : MonoBehaviour
         anim.Play(name);
 
     }
+    public void Destroyer()
+    {
+        Destroy(transform.parent.gameObject);
+    }
 }

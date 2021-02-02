@@ -244,7 +244,7 @@ public class PlayerMove : MonoBehaviour
                 var enemy = actionBox.GetComponent<Hug>().enemyToHug;
                 if (enemy != null && enemy.canUseForHealing)
                 {
-                    Destroy(enemy.gameObject);
+                    enemy.GetComponent<Enemy>().ReleaseAnim();
                     humanity.heal = false;
                 }
                 if (enemy == null)

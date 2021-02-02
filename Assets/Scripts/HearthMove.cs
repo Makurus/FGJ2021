@@ -70,6 +70,10 @@ public class HearthMove : MonoBehaviour
         {
             closeToPlayer = true;
             transform.GetChild(0).gameObject.SetActive(true);
+
+            GameObject go = transform.GetChild(0).gameObject;
+
+           go.GetComponent<Animator>().SetBool("transform",true);
         }
     }
 
